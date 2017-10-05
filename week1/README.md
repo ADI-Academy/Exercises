@@ -22,6 +22,6 @@ localhost:5000/subtract/3/4
 localhost:5000/multiply/3/4
 12
 
-localhost:500/add/hi/guys
+localhost:5000/add/hi/guys
 ERROR
 ```
