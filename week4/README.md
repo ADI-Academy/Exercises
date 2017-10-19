@@ -37,7 +37,7 @@ Start your web app (`python app.py`) and point your webpage to the correct addre
 
 
 ### Control Flow
-1. Create a [python dictionary](https://docs.python.org/2/library/stdtypes.html#dict) with they key as the names of your group members and the values as the heights in inches. **Example:**
+1. Create a [python dictionary](https://docs.python.org/2/library/stdtypes.html#dict) with the keys as the names of your group members and the values as their heights in inches. **Example:**
 ```python
 my_friends = {'jonathan': 68, 'cesar': 62, 'nick': 100}
 ```
