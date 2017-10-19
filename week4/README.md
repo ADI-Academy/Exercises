@@ -39,10 +39,10 @@ Start your web app (`python app.py`) and point your webpage to the correct addre
 ### Control Flow
 1. Create a [python dictionary](https://docs.python.org/2/library/stdtypes.html#dict) with they key as the names of your group members and the values as the heights in inches. **Example:**
 ```python
-my_friends = ['jonathan': 68, 'cesar': 62, 'nick': 100]
+my_friends = {'jonathan': 68, 'cesar': 62, 'nick': 100}
 ```
 
-2. Just like in the previous step, we'll iterate through all the entries in your dictionary and print out their names. (HINT: you can use `for key, value in my_friends` to do this). However, this time we will add an if statement in each loop to check if their height is over 65 inches (or any other arbitrary number; I promise I have nothing against people above or below 65 inches). If the height is less than the threshold, [bold](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) their names and if under, [italicize](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i) their names!  Remember the following syntax:
+2. Just like in the previous step, we'll iterate through all the entries in your dictionary and print out their names. (HINT: you can use `for key in my_friends` to do this). However, this time we will add an if statement in each loop to check if their height is over 65 inches (or any other arbitrary number; I promise I have nothing against people above or below 65 inches). If the height is less than the threshold, [bold](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) their names and if under, [italicize](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i) their names!  Remember the following syntax:
 ```html
 {% if CONDITION1 %}
 ...
@@ -74,7 +74,7 @@ my_friends = ['jonathan': 68, 'cesar': 62, 'nick': 100]
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.home') }}">Twitter Demo</a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
