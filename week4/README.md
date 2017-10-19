@@ -29,6 +29,7 @@ academy
 ```python
 return render_template("me.html", name=name)
 ```
+Start your web app (`python app.py`) and point your webpage to the correct address and you should see your webpage.
 
 3. Let's try something more complicated! Create a list in your `app.py` of the names of your group member and pass the entire list to your template.
 
@@ -56,6 +57,47 @@ my_friends = ['jonathan': 68, 'cesar': 62, 'nick': 100]
 ## Part 3
 
 ### Template Inheritance
-1. Create a new html file name `base.html` or some other easy to remember name. Copy and paste the following code into that file. This will form the base of your
+1. Create a new html file name `base.html` or some other easy to remember name. Copy and paste the following code into that file. This will form the base of your html file!
+```html
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 
-2.
+<body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar_header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">Twitter Demo</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><Home</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
+```
+For all future html documents, you can extend this document by adding
+```
+{% extends "base.html" %}
+```
+Remember you can add all of your content in the future within a pair of block tags
+```
+{% block content %}
+YOUR PAGE CONTENT HERE
+{% endblock %}
+```
+2. Create (or copy) your personal webpage and make sure that it extends your `base.html`.
