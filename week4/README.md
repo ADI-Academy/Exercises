@@ -42,7 +42,7 @@ Start your web app (`python app.py`) and point your webpage to the correct addre
 my_friends = {'jonathan': 68, 'cesar': 62, 'nick': 100}
 ```
 
-2. Just like in the previous step, we'll iterate through all the entries in your dictionary and print out their names. (HINT: you can use `for key in my_friends` to do this). However, this time we will add an if statement in each loop to check if their height is over 65 inches (or any other arbitrary number; I promise I have nothing against people above or below 65 inches). If the height is less than the threshold, [bold](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) their names and if under, [italicize](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i) their names!  Remember the following syntax:
+2. Just like in the previous step, we'll iterate through all the entries in your dictionary and print out their names. (HINT: you can use `for key, value in my_friends.items()` to iterate through the dictionary). However, this time we will add an if statement in each loop to check if their height is over 65 inches (or any other arbitrary number; I promise I have nothing against people above or below 65 inches). If the height is less than the threshold, [bold](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) their names and if under, [italicize](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i) their names!  Remember the following syntax:
 ```html
 {% if CONDITION1 %}
 ...
@@ -90,11 +90,11 @@ my_friends = {'jonathan': 68, 'cesar': 62, 'nick': 100}
 </body>
 </html>
 ```
-For all future html documents, you can extend this document by adding
+For all future html documents, you can inherit from your base by adding at the very top of the page:
 ```
 {% extends "base.html" %}
 ```
-Remember you can add all of your content in the future within a pair of block tags
+Remember to add all of your content in the future within a pair of block tags
 ```
 {% block content %}
 YOUR PAGE CONTENT HERE
