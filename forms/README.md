@@ -4,7 +4,7 @@ User interaction is one of the most important features of a websites and forms a
 
 ### Table of Contents
 1. [Flask-Bootstrap](#flask-bootstrap)
-
+2. [Forms](#wtforms)
 
 
 ## Flask-Bootstrap
@@ -97,6 +97,8 @@ Forms are an extremely important part of any web application. During lecture, we
           print username
       return render_template('login.html', form=form)
   ```
+
+7. You will also need to set a secret key in order to enable CSRF protection.
 
 7. From our basic (and actually incomplete) form processing, we now want to be able to display our form to see. Luckily, there is an extremely easy way to do this using flask-bootstrap and flask-forms. Navigate to the ```base.html``` and insert the following line at the top:
   ```html
