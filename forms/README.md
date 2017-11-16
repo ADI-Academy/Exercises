@@ -143,3 +143,36 @@ Forms are an extremely important part of any web application. During lecture, we
   ```
 
 12. Now if you try to submit, it should go through! If you check the terminal output, you can also see the username printed out so everything seems to be going fine. HOWEVER, you should also notice that the values that we input to our values didn't change. Furthermore, if you try to refresh the page, **you'll see that it resubmits the form!!!** This is vey dangerous behavior and it's because after we submit our POST request, the page doesn't know where to go afterwards so it stays on the POST request stage. We are going to implement a very often-used sequence known as a *Post/Redirect/Get Pattern*.
+
+13. We're going to import the ```redirect``` function in flask.
+  ```python
+  from flask import ..., redirect
+  ```
+
+14. We can return a **redirect response** after our form processes so that it can GET the normal webpage again.
+  ```python
+  if form.validate_on_submit():
+      ...
+      return redirect(url_for('login'))
+
+  ```
+  This will redirect after your POST request to the login page again and you won't be getting a POST resubmission after refresh!
+
+
+15. However, we have another problem! The username is no longer being rendered and we expect to be seeing a **Hello <username>**. This is because our username variable is forgotten right we redirect. Luckily, we have a way to save variables for user sessions!
+
+16. We can import the session variable from python.
+  ```python
+  from flask import ..., session
+  ```
+
+17. Now we can save user variables using the session object!
+  ```python
+  if form.validate_on_submit():
+      session['username'] = form.username.data
+      session['name'] = form.name.data
+      ...
+
+  return render_template('login.html', form=form, name=session.get('name'))
+  ```
+  This way you should be able to save your user's information! (**Note:** We use the ```.get()``` method so that we return ```None``` if we can't find the name in the session object.) We have the beginnings of a user management system!!!
