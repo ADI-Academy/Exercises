@@ -74,7 +74,7 @@ Forms are an extremely important part of any web application. During lecture, we
 
 4. We need to build a class (kudos to 1004!) that describes our form. This is a lot simpler than you might imagine.
   ```python
-  class LoginForm(FLaskForm):
+  class LoginForm(FlaskForm):
       email = StringField('Email')
       username = StringField('Username')
       password = PasswordField('Password')
@@ -98,15 +98,15 @@ Forms are an extremely important part of any web application. During lecture, we
       return render_template('login.html', form=form)
   ```
 
-7. You will also need to set a secret key in order to enable CSRF protection.
+7. You will also need to set a secret key in order to enable [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection. Add the following line to your ```app.py``` in
 
-7. From our basic (and actually incomplete) form processing, we now want to be able to display our form to see. Luckily, there is an extremely easy way to do this using flask-bootstrap and flask-forms. Navigate to the ```base.html``` and insert the following line at the top:
+8. From our basic (and actually incomplete) form processing, we now want to be able to display our form to see. Luckily, there is an extremely easy way to do this using flask-bootstrap and flask-forms. Navigate to the ```base.html``` and insert the following line at the top:
   ```html
   {% import "bootstrap/wtf.html" as wtf %}
   ```
   This will give us functionality to use wtforms in html.
 
-8. Now go to your ```login.html``` that is being rendered by the ```login``` route. We only need to add one line to display our new form!
+9. Now go to your ```login.html``` that is being rendered by the ```login``` route. We only need to add one line to display our new form!
   ```html
   {% extends 'base.html' %}
   ...
@@ -118,4 +118,11 @@ Forms are an extremely important part of any web application. During lecture, we
 
   ```
 
-9. If all goes well, then you should be able to see your generated form as if by magic!! However there's a problem - if you try to submit you'll run into errors.
+10. If all goes well, then you should be able to see your generated form as if by magic!! However there's a problem - if you try to submit you'll run into errors.
+
+11. First, you'll see a Method Not Allowed error. Our ```login``` route only accepts GET requests right now but our forms will be submitting data via a POST request. (We are asking for a password so we need security!). To fix this, change the definition of your login route.
+  ```python
+  @app.route('login', methods=['GET', 'POST'])
+  def login():
+      ...
+  ```
