@@ -31,7 +31,7 @@ If you've been following along, you realized that we've been using the bootstrap
 
 4. We now have Bootstrap functionality! In order to see the results, we will need to edit our ```base.html``` template file (in the templates folder). Add the following line to the top of the file:
   ```html
-  {% extends "bootstrap/base.html" }
+  {% extends "bootstrap/base.html" %}
   ```
   This will automatically include all the necessary tags for your html file (including the ```<html>...</html>``` tags). Delete the opening and closing html tags now.
 
@@ -91,14 +91,21 @@ Forms are an extremely important part of any web application. During lecture, we
   ```python
   @app.route('/login')
   def login():
+      username = None
       form = LoginForm()
       if form.validate_on_submit():
           username = form.username.data
           print username
-      return render_template('login.html', form=form)
+      return render_template('login.html', form=form, name=username)
   ```
 
-7. You will also need to set a secret key in order to enable [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection. Add the following line to your ```app.py``` in
+7. You will also need to set a secret key in order to enable [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection. Add the following line to your ```app.py```:
+  ```python
+  app = Flask(__name__)
+  ...
+  app.config['SECRET_KEY'] = 'SOME_STRING_THATS_SECRET'
+  ```
+  Ideally, we would put the SECRET_KEY as an environment variable in our system, but we'll just keep it hardecoded in the app for now.
 
 8. From our basic (and actually incomplete) form processing, we now want to be able to display our form to see. Luckily, there is an extremely easy way to do this using flask-bootstrap and flask-forms. Navigate to the ```base.html``` and insert the following line at the top:
   ```html
@@ -126,3 +133,5 @@ Forms are an extremely important part of any web application. During lecture, we
   def login():
       ...
   ```
+
+12. Now if you try to submit, it should go through! If you check the terminal output, you can also see the username printed out so everything seems to be going fine. HOWEVER, you should also notice that the values that we input to our values didn't change.
