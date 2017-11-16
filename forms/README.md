@@ -142,4 +142,4 @@ Forms are an extremely important part of any web application. During lecture, we
       ...
   ```
 
-12. Now if you try to submit, it should go through! If you check the terminal output, you can also see the username printed out so everything seems to be going fine. HOWEVER, you should also notice that the values that we input to our values didn't change.
+12. Now if you try to submit, it should go through! If you check the terminal output, you can also see the username printed out so everything seems to be going fine. HOWEVER, you should also notice that the values that we input to our values didn't change. Furthermore, if you try to refresh the page, **you'll see that it resubmits the form!!!** This is vey dangerous behavior and it's because after we submit our POST request, the page doesn't know where to go afterwards so it stays on the POST request stage. We are going to implement a very often-used sequence known as a *Post/Redirect/Get Pattern*.
