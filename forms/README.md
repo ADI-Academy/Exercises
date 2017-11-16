@@ -124,7 +124,15 @@ Forms are an extremely important part of any web application. During lecture, we
   {% endblock %}
 
   ```
-
+  We will also add a little tag that will display the name variable if its defined.
+  ```html
+  {% block content %}
+  {% if name %}
+    <h1>Hello {{ name }}</h1>
+  {% endif %}
+  ...
+  {% endblock %}
+  ```
 10. If all goes well, then you should be able to see your generated form as if by magic!! However there's a problem - if you try to submit you'll run into errors.
 
 11. First, you'll see a Method Not Allowed error. Our ```login``` route only accepts GET requests right now but our forms will be submitting data via a POST request. (We are asking for a password so we need security!). To fix this, change the definition of your login route.
