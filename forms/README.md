@@ -175,4 +175,6 @@ Forms are an extremely important part of any web application. During lecture, we
 
   return render_template('login.html', form=form, name=session.get('name'))
   ```
-  This way you should be able to save your user's information! (**Note:** We use the ```.get()``` method so that we return ```None``` if we can't find the name in the session object.) We have the beginnings of a user management system!!!
+18. If you run this you will probably get a bug! Obviously we don't want that bug but try to see if you can fix it. There are several ways to do so but to get the best understanding of what's going on see if you can figure out what's wrong with ```form.py```.
+
+19. This way you should be able to save your user's information! (**Note:** We use the ```.get()``` method so that we return ```None``` if we can't find the name in the session object.) We now have the beginnings of a user management system!!!
