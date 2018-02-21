@@ -35,6 +35,8 @@ Start your web app (`python app.py`) and point your webpage to the correct addre
 
 4. Use the `{% for x in X %}` syntax to print out everyones name in an html list.
 
+5. Make sure that you end your jinja for statements with the `{% endfor %}` statement!
+
 
 ### Control Flow
 1. Create a [python dictionary](https://docs.python.org/2/library/stdtypes.html#dict) with the keys as the names of your group members and the values as their heights in inches. **Example:**
