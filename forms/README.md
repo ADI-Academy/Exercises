@@ -1,27 +1,70 @@
 # Adding forms to your website
 
-User interaction is one of the most important features of a websites and forms are often the most common and effective way to receive user response.
+## What you should have
+- `app.py` with a few routes
+  - Uses `return render_template()` to generate and return an html file.
+- `templates` directory with html files
+- `templates/home.html` html file that uses Jinja
+- 'my_venv' your virtual environment!
+
+If you do not have all of these items with their specification, you can refer to the [jinja tutorial](../jinja/README.md) to get caught up!
+
 
 ### Table of Contents
-1. [Flask-Bootstrap](#flask-bootstrap)
-2. [Forms](#wtforms)
+1. [Basic-Form](#basic-form)
+2. [Flask-Bootstrap](#flask-bootstrap)
+3. [Forms](#wtforms)
 
+## Basic Form
 
-## Flask-Bootstrap
-If you've been following along, you realized that we've been using the bootstrap library to render our CSS and styles. However, there is a more efficient way of using bootstrap that also adds a lot of useful functionality.
+In lecture this week, we looked at how to use a basic form with Flask. Feel free to skip this section if you have already implemented your own form along with the lecture. Otherwise, we will be making a simple form to login a set of users.
+
+1. We will add our form processing to the `'/'` (the home) route of our website. Add to this function a pre-defined dictionary of usernames and passwords which will contain our valid users. Your dictionary should looks something like
+`users = {'name1': 'password1', 'name2': 'password2', ...}`
+Note that in reality, you should NEVER save user passwords in plain text - they should always be encrypted!
+
+2. Now switch over to the html file that is returned by your main route. (**Note:** This should be under your templates directory.) Add a [form tag](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form) to your html page. Remember to set the `action` attribute to our homepage endpoint and the `method` attribute to `'post'`.  Next add two `<input>` tags (you can use the `type='password'` input) that will get the username and passwords of our users. As in lecture, give each of them a name – one should be `username` and the other `password`. Also, be sure to include a submit input tag! Your form should look something like the following
+
+  ```html
+  <form action='/' method='post'>
+    <input type='text' name='username'>
+    ...
+    <input type='submit'>
+  </form>
+  ```
+
+3. If you run your html page, you should see something similar to the following!
+![base_forms](../imgs/forms1.png)
+
+4. However, if you tried to submit the form now, you would get a method not accepted error. We need to edit our route so that it can accept the POST method. Change your `'/'` route to include a methods argument.
+  ```python
+  @app.route('/', methods=['GET', 'POST'])
+  ...
+  ```
+
+5. Now check to see if the username and password submitted matches the pair in our dictionary. Here are some hints to get you started.
+  - The form variables are in a python dictionary that you can access via `request.form`. Make sure to have `from flask import ..., request`
+  - Be sure that you differentiate a POST request from a GET request to your endpoint by checking the variable `request.method`.
+  - If there is a match, pass the username into your `render_template()` function and display the name on the page.
+
+6. Test to make sure that you can submit your form!!
+
+Often, when writing HTML we want to be able to generate rich, well designed pages without having to write hundreds of lines of our own CSS. Luckily, there are many libraries out there that provide a predefined set of constructs that make websites more responsive and look nicer! We'll be showing how to include the bootstrap library directly into our flask application.
+
+**NOTE:** This step is optional. If you would just skip this setup, please go download a website template [here](https://github.com/ADI-Academy/AcademySimpleWebsite).
 
 1. Download [flask-bootstrap](https://pythonhosted.org/Flask-Bootstrap/) by using the following command in your terminal. *Make sure that your virtual environment is activated!!*
   ```
   $ pip install flask-bootstrap
   ```
 
-2. First off, we need to initialize flask-bootstrap in our app by editing our ```app.py```. First import it:
+2. First off, we need to initialize flask-bootstrap in our app by editing our ```app.py```. First import `flask_bootstrap`:
   ```python
   from flask import Flask, ...
   from flask_bootstrap import Bootstrap
 
   ```
-3. We then need to initialize flask-boostrap for our current app by adding the last two lines:
+3. We then need to initialize `flask-boostrap` for our current app by adding the last two lines:
   ```python
   app = Flask(__name__)
   ...
@@ -42,7 +85,7 @@ If you've been following along, you realized that we've been using the bootstrap
     <!-- CUSTOM LINKS TO CSS AND JAVASCRIPT GO HERE -->
     {% endblock %}
     ```
-6. We can also add a special block tag aronud our navigation bar.
+6. We can also add a special block tag around our navigation bar.
   ```html
   {% block navbar %}
     <div class="navbar navbar-inverse" role="navigation">
@@ -56,7 +99,7 @@ If you've been following along, you realized that we've been using the bootstrap
 
 
 ## WTForms
-Forms are an extremely important part of any web application. During lecture, we have seen an example of how to use raw forms, but with flask we have a much more efficient and powerful method of using forms.
+Forms, while useful and versatile, are still rather clunky to use. We do not yet have a reasonable way of validating form fields or a quick and efficient way of making them. In this section, we explore one of the most widely-used form libraries available to python and the recommended way of writing forms in flask.
 
 1. Download WTForms by using the following command. *Again, make sure that you are in your virtual environment*
   ```
